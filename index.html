@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    select {
+        width: 250px;
+        padding: 12px;
+        font-size: 15px;
+        border: 1px solid #4F5A6C;
+        border-radius: 4px;
+        background-image: url(./select_down_icon.png);
+        background-repeat: no-repeat;
+        background-size: 12px;
+        background-position: right 12px top 50%;
+        color: #000;
+        box-sizing: border-box;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    select>option:disabled {
+        display: none;
+    }
+</style>
+
+<body>
+    <select name="" id="selectAgency" class="form">
+    </select>
+
+
+    <script>
+
+        //option objects, fuc
+        const options = [
+            { text: 'options1', value: 1 },
+            { text: 'options2', value: 2 },
+            { text: 'options3', value: 3 },
+            { text: 'options4', value: 4 }
+        ];
+        selectInit('#selectAgency', options, '타입선택');
+
+
+
+        //vallila JS
+        /**
+         * @param {string} id
+         * @param {Array[{}]} options  -> [{text :'string' , value : num }]
+         * @param {string} defaultText  -> optional
+         */
+        function selectInit(id, options, defaultText) {
+            const element = document.querySelector(id);
+            element.innerHTML = '';
+            if (defaultText != '') {
+                const optionElement = document.createElement('option');
+                optionElement.selected = true;
+                optionElement.disabled = true;
+                optionElement.innerHTML = defaultText;
+                element.append(optionElement);
+            }
+
+            const optionAll = document.createElement('option');
+            optionAll.innerHTML = '전체';
+            element.append(optionAll);
+            options.forEach(function (item) {
+                const optionElement = document.createElement('option');
+                optionElement.value = item.value;
+                optionElement.innerHTML = item.text;
+                element.append(optionElement);
+            });
+        }
+
+
+        //jquery
+        // function selectInit(id, options, defaultText) {
+        //     $(id).empty();
+        //     if (defaultText != '') {
+        //         $(id).append(`<option selected disabled>${defaultText}</option>`);
+        //     }
+        //     $(id).append(`<option value="">전체</option>`)
+        //     options.forEach(function (item) {
+        //         $(id).append(`<option value="${item.value}">${item.text}</option>`);
+        //     });
+        // }
+
+    </script>
+</body>
+
+</html>
